@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partial/head %>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+		<% include ../partial/logo-header %>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			<% include ../partial/navbar-header %>
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+	<% include ../partial/sidebar %>
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+        <form action="/posts/postupdate" method="post">
+        <input type="hidden" name="id" value="<%= postUpdate._id %>">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Post update</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8 col-lg-8">
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<%= postUpdate.title %>" placeholder="Enter Name">
+                        <!-- <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                      </div>
+                      <div class="form-group">
+                        <label for="content">Content</label>
+                        <input type="text" class="form-control" id="content" name="content" value="<%= postUpdate.content %>" placeholder="Enter Email">
+                        <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="author">Author</label>
+                        <select name="author" id ="author">
+                          <% for(var i=0; i< users.length; i++){%>
+                            <option value="<%=users[i]._id%>" <%= (users[i]._id.equals(postUpdate.author))?"selected":"";%> ><%=users[i].name%></option>
+                          <%}%>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-action">
+                    <input type="submit" name="" value="Submit" class="btn btn-primary btn-rounded btn-sm">
+                  <!-- <button type="button" id="sub" name="button" class="btn btn-success">Sign Up</button> -->
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+			<% include ../partial/footer %>
+		</div>
+
+
+	</div>
+	<!--   Core JS Files   -->
+	<% include ../partial/script %>
+</body>
+<!--
+    <script  src="/javascripts/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script src="/javascripts/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+        $('#email').blur(function(){
+          var data = {email:$('#email').val()};
+          if(data.email != ''){
+            $.ajax({url:'/duemail', data:data, type:'POST',
+            success:function (result){
+              if(result.status){
+                alert('duplicate email');
+                $('#email').val('');
+                $('#email').focus();
+            }
+          }
+        })
+      }
+
+      })
+
+      $('#myform').validate({
+        rules:{
+          name:{
+            required: true,
+            minlength:3,
+            maxlength: 20
+          },
+          email:{
+            required:true,
+            emailExt:true
+          },
+          pwd:{
+            required:true,
+            minlength:6,
+            maxlength:20,
+            pwcheck:true
+          }
+        },
+
+        messages:{
+          name:{
+            required:'User name field is required'
+
+          },
+          email:{
+            required:'User email field is required',
+          },
+          pwd:{
+            required:'User password field is required',
+            pwcheck: 'Please enter 1 uppercase, 1 lowercase, 1 digit'
+          },
+          maxlength: $.validator.format("Please Insert max {0} character"),
+          minlength: $.validator.format("Please Insert atleast {0} character"),
+        }
+      })
+
+
+      jQuery.validator.addMethod("emailExt", function(value, element, param) {
+      return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+      },'Your E-mail is wrong');
+
+      $.validator.addMethod("pwcheck", function(value) {
+     return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+         && /[a-z]/.test(value) // has a lowercase letter
+         && /[A-Z]/.test(value)
+         && /\d/.test(value) // has a digit
+       });
+      </script> -->
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Post Update</title>
+  </head>
+  <body>
+    <h1>Post Update</h1>
+    <form action="/posts/postupdate" method="post">
+      <input type="hidden" name="id" value="<%= postUpdate._id %>">
+      <label for="title">Title</label>
+      <input type="text" name="title" value="<%= postUpdate.title %>" id="title">
+      <label for="content">Content</label>
+      <input type="text" name="content" value="<%= postUpdate.content %>" id="content">
+      <label for="author">Author</label>
+      <select name="author" id ="author">
+        <% for(var i=0; i< users.length; i++){%>
+          <option value="<%=users[i]._id%>" <%= (users[i]._id.equals(postUpdate.author))?"selected":"";%> ><%=users[i].name%></option>
+        <%}%>
+      </select><p>
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html> -->
