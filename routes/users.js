@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../model/user');
-// var Post = require('../model/post');
+var Post = require('../model/post');
 var bcrypt = require('bcryptjs');
 
 /* GET users listing. */
