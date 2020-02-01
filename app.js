@@ -33,6 +33,7 @@ app.use(session({
 
 // mongoose.connect('mongodb://127.0.0.1/007nodejs');
 mongoose.connect('mongodb+srv://inkyinnhmwe:inkyinnhmwe123@nodejs007-ryh3g.mongodb.net/test?retryWrites=true&w=majority');
+var db = mongoose.connection;
 db.on('error',console.error.bind(console,'MongDB connection error'))
 
 app.use(function(req,res,next){
