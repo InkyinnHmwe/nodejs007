@@ -37,4 +37,20 @@ router.post('/add', function(req,res,next){
     }
   })
 })
+
+router.get('/:id', function(req,res,next){
+  Post.findById(req.params.id).populate('author').exec(function(err, rtn){
+    if(err) {
+      res.status(500).json({
+        message:"Internal server error",
+        error:err
+      })
+    }else{
+      res.status(200).json({
+        message:"Posts details",
+        posts:rtn
+      })
+    }
+  })
+})
 module.exports = router;
