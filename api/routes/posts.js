@@ -4,7 +4,7 @@ var Post =require('../model/post');
 var User = require('../model/user');
 
 router.get('/list', function(req,res,next){
-  Post.find({function(err, rtn){
+  Post.find(function(err, rtn){
     if (err){
       res.status(500).json({
         message: "Internal server error",
@@ -14,7 +14,6 @@ router.get('/list', function(req,res,next){
       res.status(200).json({
         posts:rtn
       })
-
     }
   })
 })
