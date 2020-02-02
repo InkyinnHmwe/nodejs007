@@ -45,7 +45,7 @@ app.use(function(req,res,next){
 app.use('/', indexRouter);
 app.use('/api/users',apiusersrouter);
 app.use('/api', apiAdminRouter);
-app.use('/api', apiPostRouter);
+app.use('/api/posts', apiPostRouter);
 app.use(function(req, res, next){
   if(req.session.user)
   {
